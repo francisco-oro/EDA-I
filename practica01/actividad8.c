@@ -2,7 +2,7 @@
 Acosta Jacinto Alan
 Oro Estrada Francisco Abimael
 Rubio Carmona José Ángel
-Practica 1 - Actividad 7 
+Practica 1 - Actividad 8
 *******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
