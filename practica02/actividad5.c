@@ -11,7 +11,7 @@ void reverseString(char *string, char *rev);
 
 int main(int argc, char const *argv[])
 {
-    char str[MAXSIZE], str_reversed[MAXSIZE], *strp;
+    char str[MAXSIZE], str_reversed[MAXSIZE];
     scanf("%s", str);
     reverseString(str, str_reversed);
     printf("%s", str_reversed);
