@@ -7,26 +7,49 @@ Practica 2 - Actividad 4
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAXSIZE 10
+#define n 10
+/* Prototipos de funciones */
+void llena(int *n1);
+void suma(int *n1, int *n2, int *sum);
+void imprime(int *n1);
 
 int main(int argc, char const *argv[])
 {
-    int a[MAXSIZE][MAXSIZE], b[MAXSIZE][MAXSIZE], c[MAXSIZE][MAXSIZE], i, j;
-    for (i = 0; i < MAXSIZE; i++)
-    {
-        for (j = 0; j < MAXSIZE; j++)
-        {
-            //Fill up the matrices a & b
-            *(*(a+i)+j) = rand()%MAXSIZE;
-            *(*(b+i)+j) = rand()%MAXSIZE;
-            //Add up each term and store it in the matrix c
-            *(*(c+i)+j) = *(*(a+i)+j) + *(*(b+i)+j);
+    int A[n], B[n], C[n], *a, *b, *c;
+    a=A;
+    b=B;
+    c=C;
+    llena(a);
+    llena(b);
+    suma(a,b,c);
 
-            //Display the results
-            printf("%d \t", *(*(c+i)+j));
-        }
-        printf("\n");
-    }
-    
+    imprime(a);
+    imprime(b);
+    imprime(c);
     return 0;
+}
+
+void llena(int *n1){
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        *(n1+i)=rand()%n;  //Fill up the array with random numbers
+    }
+}
+
+void suma(int *n1, int *n2, int *sum){
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        *(sum+i)=*(n1+i)+*(n2+i);  //sum[i] = n1[i] + n[i]
+    }   
+}
+
+void imprime(int *n1){
+    int i;
+    printf("\n");
+    for (i = 0; i < n; i++)
+    {
+        printf("%d\t", *(n1+i));  //printf("%d\t", n1[i])
+    }
 }
