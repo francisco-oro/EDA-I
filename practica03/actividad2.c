@@ -1,3 +1,9 @@
+/******************************************************************************
+Acosta Jacinto Alan
+Oro Estrada Francisco Abimael
+Rubio Carmona José Ángel
+Practica 3 - Actividad 2
+*******************************************************************************/
 #include <stdio.h>
 #define n 3
 
