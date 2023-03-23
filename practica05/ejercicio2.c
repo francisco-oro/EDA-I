@@ -1,7 +1,7 @@
 /******************************************************************************
 Francisco Abimael Oro Estrada
 N.C. 423115639
-Practica 5 - Actividad 1
+Practica 5 - Actividad 2
 *******************************************************************************/
 
 #include <stdio.h>
@@ -102,6 +102,7 @@ void push(pila *st, int value){
 int pop(pila *st){
     int removedValue;
     if(!vacia(st)){
+        st->stack[st->tope]=0;
         removedValue = st->stack[--st->tope];
         return removedValue;
     } else {
@@ -131,6 +132,6 @@ void vaciarPila(pila *st){
         }
         st->tope=0;
     } else {
-        printf("Pila\n");
+        printf("Empty stack\n");
     }
 }
