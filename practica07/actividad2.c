@@ -8,7 +8,7 @@ Practica 7 - Actividad 2
 #include <stdlib.h>
 
 struct node{ 
-    char dato; 
+    char *dato; 
     struct node *sig; 
 };
 
@@ -23,33 +23,31 @@ typedef struct tipoPila tpila;
 
 void creaPila(tpila *stack);
 int vacia(tpila *stack);
-int push (tpila *stack, float dato);
+int push (tpila *stack, char dato);
 float pop(tpila *stack);
 void mostrar( tpila *stack);
 
 int main(){
     tpila word;
-    int i;
-    //Crear una pila
+    int i, j;
+    char test1[5]="kayak", test2[5];
+    //Crear dos pilas
     creaPila(&word);
-    
-    /*Insertar 4 elementos en la pila: 0.9, 1.8, 2.7, 3.6
-    El orden de de los elementos sera: 3.600000 2.700000 1.800000 0.900000 */
-    for(i=0;i<4;i++){
-        push(&stack357, (i+1)*.9);
+
+    //Agregar las palabras a cada stack
+    for(i=0;i<5;i++){
+        push(&word, test1[i]);
     }
-    
-    //Mostrar el contenido de la pila (los cuatro elementos insertados previamente)
-    mostrar(&stack357); 
-    
-    //Elimina los elementos 3.6 y 2.7 de la pila
-    for(i=0;i<2;i++){
-        printf("%f ", pop(&stack357));
+
+    for(i=0;i<5;i++){
+        test2[i]=pop(&word);
     }
-    
-    /*Mostrar el contenido de la pila
-    (Solo quedan los dos primeros elementos que se insertaron)*/
-    mostrar(&stack357);
+
+    for(i=0;i<5;i++){
+        if(test2[i]==test1[i])j++;
+    }
+    if(j==5) printf("La palabra es palindrome");
+    else printf("La palabra no es palindrome");
     return 0;
 }
 
@@ -63,7 +61,7 @@ int vacia(tpila *stack){
     else return 1; 
 }
 
-int push (tpila *stack, float dato){ 
+int push (tpila *stack, char dato){ 
     nodo *nuevoNodo; 
     nuevoNodo = (nodo *)malloc(sizeof(nodo));
     if(nuevoNodo==NULL){ 
@@ -78,7 +76,7 @@ int push (tpila *stack, float dato){
 
 float pop(tpila *stack){
     nodo *tmp; 
-    float dato; 
+    char dato; 
     if(!vacia(stack)) return -1.0; 
     tmp=stack->tope; 
     stack->tope=stack->tope->sig; 
@@ -93,7 +91,7 @@ void mostrar( tpila *stack){
     tmp=stack->tope; 
     printf("\n");
     while(tmp!=NULL){
-        printf("%f ",tmp->dato);
+        printf("%c",tmp->dato);
         tmp=tmp->sig;
     }
     printf("\n");
