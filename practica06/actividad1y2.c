@@ -38,6 +38,7 @@ int main(int argc, char const *argv[]){
     for (i = 0; i < 4; i++)
     {
         enQueue(&queue2, deQueue(&queue1)); 
+        displayQueue(&queue1);
     }
     /* Como estamos agregando 4 elementos en una pila que puede almacenar como maximo 3, 
     Se imprime una advertencia de que la cola se encuentra llena */

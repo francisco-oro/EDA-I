@@ -118,6 +118,3 @@ void displaySong(si *song){
     printf("name: %s\n", song->name);
     printf("ano de lanzamiento: %d\n", song->YOL);
 }
-
-
-
