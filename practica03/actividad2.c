@@ -2,7 +2,7 @@
 Acosta Jacinto Alan
 Oro Estrada Francisco Abimael
 Rubio Carmona José Ángel
-Practica 3 - Actividad 2
+Practica 8 - Actividad 4
 *******************************************************************************/
 #include <stdio.h>
 #define n 3

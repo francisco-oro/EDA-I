@@ -1,6 +1,7 @@
-/******************************************************************************
-Francisco Abimael Oro Estrada
-N.C. 423115639
+/******************************************************************************;
+Acosta Jacinto Alan
+Oro Estrada Francisco Abimael
+Rubio Carmona José Ángel
 Practica 8 - Actividad 4
 *******************************************************************************/
 #include <stdio.h>
@@ -24,20 +25,12 @@ int numElem;
 
 typedef struct controlLista Edificio;
 
+void blue () {
+  printf("\033[0;34m");
+}
 
-void inicializacion(Edificio *lista, int size){
-    piso *nuevopiso, *tmp;
-    // Primer piso
-    nuevopiso = creapiso(1);
-    lista->inicio = nuevopiso;
-    lista->fin= nuevopiso;
-    lista->inicio->anterior=NULL; 
-    for (size_t i = 1; i < size; i++)
-    {
-        tmp = creapiso(i+1);
-        
-    }
-    
+void reset () {
+  printf("\033[0m");
 }
 
 int vacia(Edificio*lis){
@@ -59,34 +52,7 @@ piso *creapiso(double dato){
 	
 }
 
-
-int insertarInicio (Edificio*lis, double dato){
-	 piso *nuevopiso;
-	 
-	 nuevopiso=creapiso(dato);
-	 if(nuevopiso==NULL){
-	 	return 1;
-	 }  
-
-    if( vacia(lis)){
-        lis->fin=nuevopiso;
-		lis->inicio=nuevopiso;		
-        nuevopiso->anterior=NULL;
-    }
-     else{
-            // Asignar el siguiente del nuevo piso y dejar como nulo el campo del piso anterior
-           nuevopiso->siguiente=lis->inicio;
-	       lis->inicio=nuevopiso;
-           nuevopiso->siguiente->anterior=nuevopiso;
-           nuevopiso->anterior= NULL;
-	 }
-     
-     lis->numElem++;
-     return 0;
-}   
-
-
-int  insertarFinal(Edificio*lis, char dato){
+int insertarFinal(Edificio*lis, int dato){
       piso *nuevopiso;
 	 
 	 nuevopiso=creapiso(dato);
@@ -109,239 +75,67 @@ int  insertarFinal(Edificio*lis, char dato){
       return 0;
 }
 
-int insertarPos(Edificio*lis, char dato, int pos ){
-int i;
-piso *tmp, *nuevopiso;
-       if(pos <= 0 || pos > lis->numElem)
-       {  
-                printf("esa posicion no existe debe ser de a a %d", lis->numElem);
-       		return -1; 
-       	}
-        
-        nuevopiso=creapiso(dato);
-	    
-	    if(nuevopiso==NULL){
-	 	   return 1;
-	    }  
-       
-       if (pos == 0)
-        { 
-	        printf("\n usar insertar al inicio"); 
-			return -1;
-        }
-	   
-	    tmp=lis->inicio;
-	    
-        for(i=1;i<pos;i++){ 
-       
-           tmp=tmp->siguiente;
-          
-        }
-        
-        printf("\npos %d", pos);
-        
-        if(tmp->siguiente==NULL){ 
-           printf("\n usar insertar al final");   
-           return -1;
-       }
-        nuevopiso->siguiente = tmp->siguiente;
-        nuevopiso->anterior=tmp; 
-        tmp->siguiente=nuevopiso; 
-        tmp->siguiente->anterior=nuevopiso;
-        // if (nuevopiso->siguiente != NULL)
-        // {
-        //     nuevopiso->siguiente->anterior = nuevopiso;
-        // }
-       lis->numElem++;
-       return 0;
+void inicializacion(Edificio *lista, int size){
+    piso *nuevopiso;
+    lista->inicio = NULL;
+    lista->fin = NULL;
+    lista->numElem = 0;
+    for (size_t i = n; i > 0; i--)
+    {
+        insertarFinal(lista, i);
+    }
 }
 
-int insertarPos_antes(Edificio*lis, char dato, int pos ){
-int i;
-piso *tmp, *nuevopiso;
-       if(pos <= 0 || pos > lis->numElem)
-       {  
-                printf("esa posicion no existe debe ser de a a %d", lis->numElem);
-       		return -1; 
-       	}
-        
-        nuevopiso=creapiso(dato);
-	    
-	    if(nuevopiso==NULL){
-	 	   return 1;
-	    }  
-       
-       if (pos == 0)
-        { 
-	        printf("\n usar insertar al inicio"); 
-			return -1;
-        }
-	   
-	    tmp=lis->inicio;
-	    
-        for(i=1;i<pos-1;i++){ 
-       
-           tmp=tmp->siguiente;
-          
-        }
-        
-        printf("\npos %d", pos);
-        
-        if(tmp->siguiente==NULL){ 
-           printf("\n usar insertar al final");   
-           return -1;
-       }
-        nuevopiso->siguiente = tmp->siguiente;
-        nuevopiso->anterior=tmp; 
-        tmp->siguiente=nuevopiso; 
-        tmp->siguiente->anterior=nuevopiso;
-        // if (nuevopiso->siguiente != NULL)
-        // {
-        //     nuevopiso->siguiente->anterior = nuevopiso;
-        // }
-       lis->numElem++;
-       return 0;
-}
 
-char eliminarPos(Edificio*lis, int pos){
-        piso *tmp,*pisoElim;
-        char dato;
-        int i;
 
-        if(vacia(lis)){
-         printf("\n Edificiovacia");
-            return -1.0;
-         }
-        if(pos < 0 || pos > lis->numElem)
-        {
-            
-          printf ("\nposiciÃ³n no valida");  
-                return -2;              
-		}
-		if (pos==0) { 
-		     
-            if(lis->inicio==lis->fin){  
-	            inicializacion(lis);
-            }
-	        else { 
-				
-	             pisoElim=lis->inicio; 
-                 lis->inicio=lis->inicio->siguiente; 
-                //  Actualizar el campo siguiente del ultimo piso en la lista
-                 lis->fin->siguiente=lis->inicio;
-				}
-        }
-        else { 
-            
-            tmp=lis->inicio;    
-            for(i=0;i<pos;i++) { 
-                tmp=tmp->siguiente;
-            }
-            if(tmp->siguiente==NULL){
-               printf("\nLa posicion dada es del ultimo elemento, para borrarlo colocar posicion del peultimo");
-                return -3;
-            }
-           pisoElim=tmp->siguiente; 
-           tmp->siguiente=lis->inicio;
-       }
-       lis->numElem--;
-
-        dato=pisoElim->dato; 
-        free(pisoElim);
-        return  dato;
-
-}
-
-void mostrar( Edificio*lis ){
+int BuscarPiso( Edificio*lis, int numPiso ){
 	piso *tmp;
 	int cont=0;
+    char alias[2];
 	tmp=lis->inicio;
+
+    if (numPiso < 1 || numPiso > lis->numElem){
+        printf("Ese piso no esta disponible");
+        return -1;
+    }
 	while(cont != lis->numElem){
-		printf("\n dato = %c ",tmp->dato);
+        if(tmp->dato == numPiso){
+            blue();
+            printf("\n Piso = %d", tmp->dato);
+            if(numPiso == 1){
+                printf(" -> PB");
+            }
+            if (numPiso == lis->numElem)
+            {
+                printf(" -> PH");
+            }
+            reset();
+            tmp=tmp->siguiente;
+            cont++;
+            continue;
+        }
+		printf("\n Piso = %d ",tmp->dato);
 		tmp=tmp->siguiente;
 		cont++;
 	}	
 }
 
-void mostrar_rev( Edificio*lis){
-    piso *tmp;
-    int cont=0;
-    tmp=lis->fin;
-    while (cont != lis->numElem)
-    {
-        printf("\n dato = %c ", tmp->dato);
-        tmp=tmp->anterior;
-        cont++;
-    }    
-}
-
-int buscarElemento(Edificio*lis, char elemento){
-    piso *tmp;
-    int cont=0;
-    // El piso temporal inicia en el inicio de la lista
-    tmp=lis->inicio;
-    while (cont != lis->numElem)
-    {
-        if(tmp->dato == elemento){
-            return cont;
-        }
-        tmp=tmp->siguiente;
-        cont++;
-    }
-    return -1;
-}
-
 int main(int argc, char const *argv[])
 {   
-    Edificio lista1; 
+    Edificio edificio1; 
     int i;
     
-    inicializacion(&lista1);
-
-    printf("Insertando a al inicio de la Edificio:\n");
-    insertarInicio(&lista1, 'a');
-    mostrar(&lista1);
+    printf("Creando el edificio:\n");
+    inicializacion(&edificio1, n);
     printf("\n-------------------------------------\n");
 
-    printf("Insertando b al inicio de la Edificio:\n");
-    insertarInicio(&lista1, 'b');
-    mostrar(&lista1);
-    printf("\n-------------------------------------\n");
-
-    printf("Insertando c al inicio de la Edificio:\n");
-    insertarInicio(&lista1, 'c');
-    mostrar(&lista1);
-    printf("\n-------------------------------------\n");
-
-    printf("Insertando f al final de la Edificio:\n");
-    insertarFinal(&lista1, 'f');
-    mostrar(&lista1);
-    printf("\n-------------------------------------\n");
-
-    printf("Insertando d en posicion 2 :\n");
-    insertarPos(&lista1, 'd', 2);
-    mostrar(&lista1);
-    printf("\n-------------------------------------\n");
-
-    printf("Eliminando inicio y fin :\n");
-    eliminarPos(&lista1, 0);
-    eliminarPos(&lista1, 3);
-    mostrar(&lista1);
-    printf("\n-------------------------------------\n");
-
-    printf("Probando la funcion de mostrar de fin a inicio :\n");
-    mostrar_rev(&lista1);
-    printf("\n-------------------------------------\n");
-
-    printf("Insertando t antes de la posicion 2 :\n");
-    insertarPos_antes(&lista1, 't', 2);
-    mostrar(&lista1);
-    printf("\n-------------------------------------\n");
-
-    printf("Localizacion del elemento t en la Edificio: %d\n", buscarElemento(&lista1, 't'));
-    printf("Localizacion del elemento z en la Edificio(no existe) : %d\n", buscarElemento(&lista1, 'z'));
-    printf("\n-------------------------------------\n");
-    
+    while (1)
+    {
+        printf("\nIngrese el piso a buscar o -1 para salir : \n");
+        scanf("%d", &i);
+        if (i == -1) break; 
+        BuscarPiso(&edificio1, i);
+    }
     return 0;
 }
 
