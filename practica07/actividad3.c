@@ -129,6 +129,7 @@ int main(int argc, char const *argv[])
     {
         printf("Removed %.2f from the queue \n", dequeue(&queue1));
     }
+    display(&queue1);
     printf("----------------------------------"); 
 
     printf("\nDequeue 4 elements : \n");
@@ -136,6 +137,7 @@ int main(int argc, char const *argv[])
     {
         printf("Removed %.2f from the queue\n", dequeue(&queue1)); 
     }
+    display(&queue1);
     printf("----------------------------------"); 
 
     return 0;
