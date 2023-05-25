@@ -1,7 +1,7 @@
 """
 Francisco Abimael Oro Estrada
 N.C. 423115639
-Practica 11 - Actividad 4
+Practica 11 - Actividad 5
 """
 import time as tm
 
@@ -12,9 +12,11 @@ def fact(n):
         return n * fact(n - 1)
     
 def fact2(n): 
+    fact = 1
     while(n):
-        value = n * n-1
-    return value
+        fact = fact * n
+        n-=1
+    return fact
     
 if __name__ == '__main__':
     num =  int(input("Input a number : "))
