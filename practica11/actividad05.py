@@ -1,25 +1,30 @@
 """
-Acosta Jacinto Alan
-Oro Estrada Francisco Abimael
-Rubio Carmona José Ángel
-Melendez Gómez Anuar
-Practica 10 - Actividad 5
+Francisco Abimael Oro Estrada
+N.C. 423115639
+Practica 11 - Actividad 5
 """
-def bruteForceStringMatch(Text, Pattern):
-    # Implements brute force string matching
-    # Input: an array T[0, n-1] characters representing text and P[0, n-1] characters representing a pattern
-    # Output: The index of the first character in the text that starts a matching substring or -1 if the search is unsuccessful
-    for i in range(len(Text)):
-        j = 0 
-        while(j < len(Pattern)) and (Pattern[j] == Text[i+j]):
-            j+=1
-        if j == len(Pattern):
-            return i
-    return -1
+import time as tm
 
-first_string = "Dicen tus jefes que a mi no me quieren"
-first_pattern = "tus jefes"
-second_pattern = "Y yo me agüito y me salgo beber"
-
-print(f"The pattern '{first_pattern}' was found in '{first_string}' at index {bruteForceStringMatch(first_string, first_pattern)}")
-print(f"The pattern '{second_pattern}' was not found in '{first_string}' (status returned {bruteForceStringMatch(first_string, second_pattern)})")
+def fact(n):
+    if n == 0 or n==1:
+        return 1
+    else: 
+        return n * fact(n - 1)
+    
+def fact2(n): 
+    fact = 1
+    while(n):
+        fact = fact * n
+        n-=1
+    return fact
+    
+if __name__ == '__main__':
+    num =  int(input("Input a number : "))
+    start = tm.time()
+    print(f"The factorial of {num} is : {fact(num)}")
+    end = tm.time()
+    print(f"Elapsed time using recurssive function : {end - start}")
+    start = tm.time()
+    print(f"The factorial of {num} is : {fact2(num)}")
+    end = tm.time()
+    print(f"Elapsed time using iterative function : {end - start}")

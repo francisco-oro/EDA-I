@@ -6,9 +6,10 @@ Practica 7 - Actividad 2
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct node{ 
-    char *dato; 
+    char dato; 
     struct node *sig; 
 };
 
@@ -28,26 +29,32 @@ float pop(tpila *stack);
 void mostrar( tpila *stack);
 
 int main(){
-    tpila word;
-    int i, j;
-    char test1[5]="kayak", test2[5];
+    tpila word, word2;
+    int i, j, k;
+    char test1[5]="kayak", test2[5]="tacos", output1[5], output2[5];
+
     //Crear dos pilas
     creaPila(&word);
-
+    creaPila(&word2);
     //Agregar las palabras a cada stack
     for(i=0;i<5;i++){
         push(&word, test1[i]);
+        push(&word2, test2[i]);
     }
 
     for(i=0;i<5;i++){
-        test2[i]=pop(&word);
+        output1[i]=pop(&word);
+        output2[i]=pop(&word2);
     }
 
     for(i=0;i<5;i++){
-        if(test2[i]==test1[i])j++;
+        if(output1[i]==test1[i])j++;
+        if(output2[i] == test2[i])k++;
     }
-    if(j==5) printf("La palabra es palindrome");
-    else printf("La palabra no es palindrome");
+    if(j==5) printf("La palabra %s es palindrome \n", test1);
+    else printf("La palabra %s no es palindrome \n", test1);
+    if(k==5) printf("La palabra tacos es palindrome\n");
+    else printf("La palabra tacos no es palindrome\n");
     return 0;
 }
 

@@ -3,6 +3,7 @@ Acosta Jacinto Alan
 Oro Estrada Francisco Abimael
 Rubio Carmona José Ángel
 Melendez Gómez Anuar
+Hernandez Alemán Cristian Orlando
 Practica 10 - Actividad 6 
 """
 

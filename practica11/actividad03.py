@@ -1,28 +1,22 @@
 """
 Francisco Abimael Oro Estrada
 N.C. 423115639
-Practica 10 - Actividad 3
+Practica 11 - Actividad 3
 """
 
-from random import randint
-
-def sort_selection(A):
-    for i in range(len(A) - 1):
-        min = i
-        for j in range(i + 1, len(A)):
-            if A[j] < A[min]:
-                min = j
-        if min != i:
-            temp = A[i]
-            A[i] = A[min]
-            A[min] = temp
-    return A
-
-def main():
-    items = [randint(1, 20) for i in range(10)]
-    print(f"Unordered list: {items}")
-
-    items_sorted = sort_selection(items)
-    print(f"Ordered list : {items_sorted}")
-
-main()
+def exp(a, n): 
+    if n == 0:
+        return 1
+    if n == 1:
+        return a
+    if n % 2 and n > 0:
+        return a * exp(a, n -1)
+    else :
+        return exp(a, n/2) * exp(a, n/2)
+    
+    
+if __name__ == '__main__':
+    num =  int(input("Input a number : "))
+    n = int(input("Input a power to raise that number : "))
+    print(f"{num} raised to the power {n} is : {exp(num, n)}")
+    
